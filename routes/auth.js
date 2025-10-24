@@ -19,6 +19,7 @@ router.post('/signup', async (req, res) => {
     const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
     res.status(201).json({ token });
   } catch (error) {
+    console.error('Signup error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -34,6 +35,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
