@@ -14,22 +14,11 @@ app.use(express.json());
 
 // Configure CORS to allow your frontend origin
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    const allowedOrigins = [
-      'https://task-manager-frontend-wine-rho.vercel.app',
-      'http://localhost:3000', // For local development
-      'http://localhost:5173' // Vite default port
-    ];
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: [
+    'https://task-manager-frontend-wine-rho.vercel.app',
+    'http://localhost:3000', // For local development
+    'http://localhost:5173' // Vite default port
+  ],
   credentials: true, // Allow cookies and auth headers
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
